@@ -1,5 +1,6 @@
 package cn.wenat;
 
+import cn.wenat.common.InfoConstant;
 import cn.wenat.form.MainForm;
 import cn.wenat.utils.HttpClientUtils;
 import com.alibaba.fastjson.JSON;
@@ -179,7 +180,7 @@ public class LocalServer {
                 socket.close();
                 callListener.onClose();
             }
-            callListener.eventCall("[绑定域名]:" + msg);
+            callListener.eventCall("[绑定域名]:" + handleMsg(msg));
         } catch (Exception e) {
             logger.error(e);
         }
@@ -317,6 +318,24 @@ public class LocalServer {
             socket = null;
         }
         callListener.ping(0l);
+    }
+
+    /**
+     * 处理服务器返回的敏感标识
+     *
+     * @param msg
+     * @return
+     */
+    public String handleMsg(String msg) {
+        // 排除敏感字
+        List<String> list = InfoConstant.SensitiVeData.getList();
+        for (String s : list) {
+            if (msg.contains(s)) {
+                return msg.split(s)[0];
+            }
+        }
+
+        return msg;
     }
 
     public static void main(String[] args) throws Exception {

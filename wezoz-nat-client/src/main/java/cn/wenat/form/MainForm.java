@@ -51,7 +51,7 @@ public class MainForm extends BaseForm {
 
 	private JLabel lblSpeed;
 	public MainForm() {
-		setTitle("WeNAT-HTTP内网穿透");
+		setTitle("内网穿透");
 		this.setSize(546, 432);
 		setLocationRelativeTo(null);
 
@@ -69,6 +69,7 @@ public class MainForm extends BaseForm {
 			public void actionPerformed(ActionEvent e) {
 				if (btnAction.getText().equals("启动服务")) {
 					try {
+						// 要代理的地址
 						String host = txtHost.getText();
 						server = new LocalServer();
 						server.setServer("http://wezoz.com:3001");
@@ -196,7 +197,7 @@ public class MainForm extends BaseForm {
 				super.append(str);
 			}
 		};
-		txtConsole.setText("官方网站:https://www.wezoz.com\n");
+		txtConsole.setText("欢迎使用开源内网穿透:");
 		txtConsole.setBounds(19, 181, 437, 129);
 		panelConsole = new JScrollPane(txtConsole, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		panelConsole.setLocation(20, 210);
@@ -213,7 +214,7 @@ public class MainForm extends BaseForm {
 		});
 		change();
 		//打开网站
-		openBrowser();
+//		openBrowser();
 	}
 
 	private JLabel lblPing;
